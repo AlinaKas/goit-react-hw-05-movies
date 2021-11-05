@@ -1,56 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import s from './MoviesSearchPage.module.css';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+
 import { requestMovieSearch } from '../../services/moviesApi';
-import PreLoader from '../../components/Loader/Loader';
-import defaultImage from '../../images/default-error.png';
+
 import Searchbar from '../../components/Searchbar';
 import MovieGallery from '../../components/MovieGallery';
-import { ToastContainer } from 'react-toastify';
+import s from './MoviesSearchPage.module.css';
+
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import default_avatar from '../../images/default_avatar.png';
 
 const MoviesSearchPage = () => {
   const [query, setQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  const [movies, setMovies] = useState(null);
+  const history = useHistory();
+  const location = useLocation();
+
+  const { url } = useRouteMatch();
 
   useEffect(() => {
-    if (query === '') {
+    if (location.search === '') {
       return;
     }
+    const newSearch = new URLSearchParams(location.search).get('query');
+    setQuery(newSearch);
+  }, [location.search]);
 
-    requestMovieSearch(query)
-      .then(results => {
-        if (results.length === 0) {
-          return setError(`No movies for your request ${query}`);
-        }
-        setMovies([...movies, ...results]);
-        setPage(page);
-      })
-      .catch(error => setError(error))
-      .finally(() => setIsLoading(false));
-  }, [query, page]);
+  useEffect(() => {
+    query && getMovies();
+  }, [query]);
 
-  const getSearchValue = query => {
-    setQuery(query);
-    setMovies([]);
-    setPage(1);
-    setError(null);
-    setIsLoading(true);
+  const getMovies = () => {
+    requestMovieSearch(query).then(results => {
+      if (results.length === 0) {
+        toast.error(`No movies for your request ${query}`);
+        return;
+      }
+      setMovies(results);
+    });
   };
+
+  const getSearchValue = useCallback(
+    query => {
+      setQuery(query);
+      setMovies([]);
+      history.push({ ...location, search: `query=${query}` });
+    },
+    [history, location],
+  );
 
   return (
     <>
       <Searchbar onSubmitForm={getSearchValue} />
-      {isLoading && <PreLoader />}
-      {movies.length > 0 && !error && <MovieGallery movies={movies} />}
-      {error && <p className={s.error}>{error}</p>}
-      {error && (
+      {movies && <MovieGallery movies={movies} />}
+      {/* {error && <p className={s.error}>{error}</p>} */}
+      {/* {error && (
         <div>
           <img src={defaultImage} alt="error" className={s.defaultImage} />
         </div>
-      )}
+      )} */}
       <ToastContainer autoClose={3000} />
     </>
   );

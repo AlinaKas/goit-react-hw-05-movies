@@ -43,19 +43,3 @@
   padding-bottom: 24px;
 }
 
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.link {
-  display: block;
-  text-decoration: none;
-}
-
-.defaultImage {
-  width: 100%;
-  margin: 0 auto;
-  top: 40px;
-}

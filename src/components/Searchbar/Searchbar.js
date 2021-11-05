@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import s from './Searchbar.module.css';
 
 import { toast } from 'react-toastify';
@@ -7,20 +7,23 @@ import 'react-toastify/dist/ReactToastify.css';
 function Searchbar({ onSubmitForm }) {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearchChange = e => {
+  const handleSearchChange = useCallback(e => {
     setSearchQuery(e.currentTarget.value.toLowerCase());
-  };
+  }, []);
 
-  const handleSearchSubmit = e => {
-    e.preventDefault();
-    if (searchQuery.trim() === '') {
-      return toast.info('Enter your request', {
-        theme: 'dark',
-      });
-    }
-    onSubmitForm(searchQuery);
-    setSearchQuery('');
-  };
+  const handleSearchSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      if (searchQuery.trim() === '') {
+        return toast.info('Enter your request', {
+          theme: 'dark',
+        });
+      }
+      onSubmitForm(searchQuery);
+      setSearchQuery('');
+    },
+    [searchQuery, onSubmitForm],
+  );
 
   return (
     <>
