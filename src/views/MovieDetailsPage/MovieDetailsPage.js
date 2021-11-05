@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import s from './MovieDetailsPage.module.css';
 import { movieDetailsGet } from '../../services/moviesApi';
 import PreLoader from '../../components/Loader/Loader';
-import poster_default from '../../images/default_error.png';
+import poster_default from '../../images/default_movie.png';
 
 // import Reviews from '../../components/Reviews';
 // import Cast from '../../components/Cast';
@@ -24,12 +24,13 @@ const MovieDetailsPage = () => {
   const history = useHistory();
   const location = useLocation();
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState({});
   const { url, path } = useRouteMatch();
 
-  // let poster = movie.poster_path
-  //   ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-  //   : poster_default;
+  const { title, genres, vote_average, overview, poster_path } = movie;
+  let poster = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : poster_default;
 
   useEffect(() => {
     movieDetailsGet(movieId)
@@ -48,29 +49,24 @@ const MovieDetailsPage = () => {
       </button>
       {movie && (
         <div className={s.contentWrap}>
-          <img
-            src={
-              `https://image.tmdb.org/t/p/w300${movie.poster_path}` ??
-              poster_default
-            }
-            alt={movie.original_title}
-            width="300"
-            className={s.image}
-          />
+          <img src={poster} alt={title} width="300" className={s.image} />
           <div className={s.infoWrap}>
-            <h2 className={s.movieTitle}>{movie.original_title}</h2>
+            <h2 className={s.movieTitle}>{title}</h2>
             <p className={s.info}>
               User score:
-              <span className={s.rating}>{movie.vote_average}/10</span>
+              <span className={s.rating}>{vote_average}/10</span>
             </p>
             <p className={s.info}>
               Overview:
-              <span className={s.description}>{movie.overview}</span>
+              <span className={s.description}>{overview}</span>
             </p>
             <p className={s.info}>
               Genres:
               <span className={s.description}>
-                {movie.genres.map(genre => genre.name).join(' / ')}
+                {genres &&
+                  genres.map(genre => {
+                    return <span key={genre.id}>{genre.name}/</span>;
+                  })}
               </span>
             </p>
             <h3 className={s.title}>Additional Information</h3>

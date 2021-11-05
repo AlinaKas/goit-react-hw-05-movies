@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import s from './MovieGalleryItem.module.css';
-import poster_default from '../../images/default_error.png';
+import poster_default from '../../images/default_movie.png';
 
 export default function MovieGalleryItem({ movie }) {
   const location = useLocation();
