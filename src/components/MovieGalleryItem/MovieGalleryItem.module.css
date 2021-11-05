@@ -10,12 +10,10 @@
 .item {
 /* display: inline-block;
 padding: 12px;
-font-weight: 700;
-font-size: 25px;
-color: #2a363b; */
-
 /* flex-basis: calc(100% / 3 - 30px); */
+display: inline-block;
 width: 270px;
+font-size: 25px;
 margin-bottom: 25px;
 border-radius: 5px;
 transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -23,24 +21,23 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 .item:hover {
   transform: scale(1.05);
-  box-shadow: 0px 3px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 1px 1px 4px 0px rgba(65, 54, 54, 0.12);
   cursor: pointer;
-
 }
-.link:hover {
-  transform: scale(1.02);
-  cursor: zoom-in;
-}
-.title{
-  color: #525b8f;;
 
- }
+
+.title {
+  font-size: 25px;
+  color: #d8d8d8;
+}
+
 .titleWrap{
 text-align: center;
 padding: 20px;
-
 }
 
-
+/* .default_movie{
+  height: 405px;
+  width: 300px;
+  object-fit: cover;
+} */
 

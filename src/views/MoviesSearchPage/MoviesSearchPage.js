@@ -9,7 +9,7 @@ import s from './MoviesSearchPage.module.css';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import default_avatar from '../../images/default_avatar.png';
+import default_avatar from '../../images/default_avatar.jpeg';
 
 const MoviesSearchPage = () => {
   const [query, setQuery] = useState('');

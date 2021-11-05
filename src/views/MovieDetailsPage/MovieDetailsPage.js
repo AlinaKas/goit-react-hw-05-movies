@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import s from './MovieDetailsPage.module.css';
 import { movieDetailsGet } from '../../services/moviesApi';
 import PreLoader from '../../components/Loader/Loader';
+import poster_default from '../../images/default_error.png';
 
 // import Reviews from '../../components/Reviews';
 // import Cast from '../../components/Cast';
@@ -26,7 +27,9 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { url, path } = useRouteMatch();
 
-  // const { title, genres, vote_average, overview, poster_path } = movie;
+  // let poster = movie.poster_path
+  //   ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+  //   : poster_default;
 
   useEffect(() => {
     movieDetailsGet(movieId)
@@ -46,7 +49,10 @@ const MovieDetailsPage = () => {
       {movie && (
         <div className={s.contentWrap}>
           <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            src={
+              `https://image.tmdb.org/t/p/w300${movie.poster_path}` ??
+              poster_default
+            }
             alt={movie.original_title}
             width="300"
             className={s.image}
@@ -55,7 +61,7 @@ const MovieDetailsPage = () => {
             <h2 className={s.movieTitle}>{movie.original_title}</h2>
             <p className={s.info}>
               User score:
-              <span className={s.description}>{movie.vote_average}</span>
+              <span className={s.rating}>{movie.vote_average}/10</span>
             </p>
             <p className={s.info}>
               Overview:
@@ -75,8 +81,12 @@ const MovieDetailsPage = () => {
                 to={{
                   pathname: `${url}/cast`,
                   state: {
-                    backUrl: `${location.state?.searchValue ? `/movies` : `/`}`,
-                    searchValue: location.state?.searchValue ?? '',
+                    state: {
+                      from: {
+                        location: location?.state?.from?.location ?? '/',
+                        label: location?.state?.from?.label ?? 'Back to Home',
+                      },
+                    },
                   },
                 }}
               >

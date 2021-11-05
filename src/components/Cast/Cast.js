@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { movieCastGet } from '../../services/moviesApi';
-import default_avatar from '../../images/default_avatar.png';
+import default_avatar from '../../images/default_avatar.jpeg';
 import PreLoader from '../Loader/Loader';
 import s from './Cast.module.css';
 
@@ -17,6 +17,7 @@ const Cast = () => {
   if (status === 'pending') {
     return <PreLoader />;
   }
+
   if (status === 'success') {
     return (
       <ul className={s.list}>
@@ -30,13 +31,16 @@ const Cast = () => {
                     : default_avatar
                 }
                 alt={name}
+                className={s.image}
               />
-              <h3 className={s.title}>{name}</h3>
-              <p className={s.description}>{character}</p>
+              <div className={s.contentWrap}>
+                <h3 className={s.title}>{name}</h3>
+                <p className={s.description}>{character}</p>
+              </div>
             </li>
           ))
         ) : (
-          <h3>Nothing found</h3>
+          <p className={s.message}>Nothing found</p>
         )}
       </ul>
     );
