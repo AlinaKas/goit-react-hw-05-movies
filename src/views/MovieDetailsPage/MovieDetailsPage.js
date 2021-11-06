@@ -44,7 +44,7 @@ const MovieDetailsPage = () => {
   return (
     <div>
       <button type="submit" onClick={onGoBack} className={s.btn}>
-        BACK
+        &#5130; BACK TO SEARCH
       </button>
       {movie && (
         <div className={s.contentWrap}>

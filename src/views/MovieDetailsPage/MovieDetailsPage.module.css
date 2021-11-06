@@ -6,10 +6,12 @@
 
 .btn {
   margin-bottom: 20px;
-  margin-left: 60px;
-  min-width: 100px;
-  height: 30px;
-  font-family: 'Raleway';
+  margin-left: 20px;
+  min-width: 120px;
+  height: 50px;
+  padding: 12px;
+  padding-right: 15px;
+  font-family: 'Tahoma';
   font-size: 18px;
   font-weight: 700;
   border-radius: 30px;
@@ -35,11 +37,7 @@
 .movieTitle {
   display: inline-block;
   margin-top: 0;
-  margin-bottom: 30px;
   height: 40px;
-  padding-top: 10px;
-  /* background-color: #78797ed5;
-  border-radius: 30px; */
   font-weight: 700;
   font-size: 35px;
   text-transform: uppercase;
@@ -50,17 +48,17 @@
 }
 
 .info {
+  margin-top: 15px;
   font-weight: 700;
-  color: #ffffff;
   font-size: 20px;
   text-transform: uppercase;
-  margin-top: 20px;
+  color: #ffffff;
 }
 
 .description {
   margin-left: 10px;
   color: #bbb9b9;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.16;
   text-transform: none;
@@ -72,6 +70,12 @@
   font-size: 25px;
   margin-left: 5px;
  color:#757fb8;
+}
+
+.genre{
+  composes: description;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .genre:not(:last-child){
@@ -110,11 +114,11 @@ border-radius: 30px;
 
 .link{
 display: inline-block;
-height: 25px;
+height: 30px;
 padding-top: 5px;
 padding-bottom: 5px;
 font-weight: 700;
-font-size: 20px;
+font-size: 25px;
 color: #000000;
 text-decoration: none;
 text-align: center;
