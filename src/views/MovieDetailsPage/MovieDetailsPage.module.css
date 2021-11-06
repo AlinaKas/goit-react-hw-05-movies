@@ -1,11 +1,12 @@
 .contentWrap{
   display: flex;
   margin-bottom: 20px;
+  padding: 10px;
 }
 
 .btn {
   margin-bottom: 20px;
-  margin-left: 40px;
+  margin-left: 60px;
   min-width: 100px;
   height: 30px;
   font-family: 'Raleway';
@@ -24,37 +25,11 @@
 }
 
 .infoWrap {
-  margin-left: 35px;
+  margin-left: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   text-align: left;
-}
-
-.info {
-  font-weight: 700;
-  color: #ffffff;
-  font-size: 20px;
-  text-transform: uppercase;
-  margin-top: 20px;
-}
-
-.rating {
-  composes: info;
-  display: inline-block;
-  font-size: 25px;
-  margin-left: 5px;
- color:#757fb8;
-}
-
-
-.description {
-  margin-left: 10px;
-  color: #bbb9b9;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.16;
-  text-transform: none;
 }
 
 .movieTitle {
@@ -67,18 +42,44 @@
   border-radius: 30px; */
   font-weight: 700;
   font-size: 35px;
+  text-transform: uppercase;
   line-height: 1.16;
   letter-spacing: 0.03em;
   text-align: center;
   color: #ffffff;
 }
 
+.info {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
 .description {
-  text-align: left;
+  margin-left: 10px;
+  color: #bbb9b9;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.16;
+  text-transform: none;
+}
+
+.rating {
+  composes: info;
+  display: inline-block;
+  font-size: 25px;
+  margin-left: 5px;
+ color:#757fb8;
+}
+
+.genre:not(:last-child){
+  margin-right: 20px;
 }
 
 .image {
-  margin-right: 30px;
+  margin-right: 0;
   margin-bottom: 0;
 
   max-width: 320px;
@@ -109,8 +110,9 @@ border-radius: 30px;
 
 .link{
 display: inline-block;
-height: 40px;
-padding-top: 10px;
+height: 25px;
+padding-top: 5px;
+padding-bottom: 5px;
 font-weight: 700;
 font-size: 20px;
 color: #000000;

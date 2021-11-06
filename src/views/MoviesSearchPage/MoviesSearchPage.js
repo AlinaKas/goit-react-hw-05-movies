@@ -16,8 +16,7 @@ const MoviesSearchPage = () => {
   const [movies, setMovies] = useState(null);
   const history = useHistory();
   const location = useLocation();
-
-  const { url } = useRouteMatch();
+  // const { url } = useRouteMatch();
 
   useEffect(() => {
     if (location.search === '') {
@@ -32,13 +31,15 @@ const MoviesSearchPage = () => {
   }, [query]);
 
   const getMovies = () => {
-    requestMovieSearch(query).then(results => {
-      if (results.length === 0) {
-        toast.error(`No movies for your request ${query}`);
-        return;
-      }
-      setMovies(results);
-    });
+    requestMovieSearch(query)
+      .then(results => {
+        if (results.length === 0) {
+          toast.error(`No movies for your request ${query}`);
+          return;
+        }
+        setMovies(results);
+      })
+      .catch(error => error);
   };
 
   const getSearchValue = useCallback(

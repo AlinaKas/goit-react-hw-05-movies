@@ -1,4 +1,4 @@
-.default_avatar, image{
+image{
   height: 250px;
   width: 100%;
   object-fit: cover;
@@ -17,13 +17,14 @@
 }
 
 .item {
+  display: block;
   width: 200px;
-  height: 350px;
+  height: 370px;
   margin: 20px;
 }
 
 .contentWrap{
-    padding: 10px;
+  padding: 10px;
 }
 
 .title {

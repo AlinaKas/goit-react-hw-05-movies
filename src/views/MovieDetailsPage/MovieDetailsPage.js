@@ -26,10 +26,9 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const { url, path } = useRouteMatch();
-
   const { title, genres, vote_average, overview, poster_path } = movie;
-  let poster = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+  let poster = poster_path
+    ? `https://image.tmdb.org/t/p/w300${poster_path}`
     : poster_default;
 
   useEffect(() => {
@@ -54,7 +53,7 @@ const MovieDetailsPage = () => {
             <h2 className={s.movieTitle}>{title}</h2>
             <p className={s.info}>
               User score:
-              <span className={s.rating}>{vote_average}/10</span>
+              <span className={s.rating}>{vote_average}</span>
             </p>
             <p className={s.info}>
               Overview:
@@ -65,7 +64,11 @@ const MovieDetailsPage = () => {
               <span className={s.description}>
                 {genres &&
                   genres.map(genre => {
-                    return <span key={genre.id}>{genre.name}/</span>;
+                    return (
+                      <span key={genre.id} className={s.genre}>
+                        {genre.name}
+                      </span>
+                    );
                   })}
               </span>
             </p>
