@@ -19,7 +19,7 @@ image{
 .item {
   display: block;
   width: 200px;
-  height: 370px;
+  height: 350px;
   margin: 20px;
 }
 
@@ -33,7 +33,7 @@ image{
 }
 
 .description {
-margin-top: 5px;
+  margin-top: 5px;
   font-size: 15px;
   color: #525b8f;
 }
