@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import s from './MovieGalleryItem.module.css';
 import poster_default from '../../images/default_movie.png';
 
@@ -18,8 +18,8 @@ export default function MovieGalleryItem({ movie }) {
         className={s.link}
         exact
         to={{
-          pathname: `/movies/${movie.id}`,
-          state: { from: location, label: 'Back to search' },
+          pathname: `movies/${movie.id}`,
+          state: { from: location, label: 'BACK TO HOME' },
         }}
       >
         <img

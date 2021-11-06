@@ -10,15 +10,19 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import s from './MovieDetailsPage.module.css';
-import { movieDetailsGet } from '../../services/moviesApi';
+import { getMovieDetails } from '../../services/moviesApi';
 import PreLoader from '../../components/Loader/Loader';
 import poster_default from '../../images/default_movie.png';
 
 // import Reviews from '../../components/Reviews';
 // import Cast from '../../components/Cast';
 
-const Reviews = lazy(() => import('../../components/Reviews'));
-const Cast = lazy(() => import('../../components/Cast'));
+const Reviews = lazy(() =>
+  import('../../components/Reviews' /* webpackChunkName: "reviews" */),
+);
+const Cast = lazy(() =>
+  import('../../components/Cast' /* webpackChunkName: "cast" */),
+);
 
 const MovieDetailsPage = () => {
   const history = useHistory();
@@ -32,19 +36,19 @@ const MovieDetailsPage = () => {
     : poster_default;
 
   useEffect(() => {
-    movieDetailsGet(movieId)
+    getMovieDetails(movieId)
       .then(setMovie)
       .catch(error => error);
   }, [movieId]);
 
   const onGoBack = () => {
-    history.push(location?.state?.from?.location ?? '/movies');
+    history.push(location?.state?.from ?? '/');
   };
 
   return (
     <div>
       <button type="submit" onClick={onGoBack} className={s.btn}>
-        &#5130; BACK TO SEARCH
+        &#5130; BACK
       </button>
       {movie && (
         <div className={s.contentWrap}>
@@ -79,14 +83,7 @@ const MovieDetailsPage = () => {
                 activeClassName={s.activeLink}
                 to={{
                   pathname: `${url}/cast`,
-                  state: {
-                    state: {
-                      from: {
-                        location: location?.state?.from?.location ?? '/',
-                        label: location?.state?.from?.label ?? 'Back to Home',
-                      },
-                    },
-                  },
+                  state: { from: location?.state?.from ?? '/' },
                 }}
               >
                 Cast
@@ -96,10 +93,7 @@ const MovieDetailsPage = () => {
                 activeClassName={s.activeLink}
                 to={{
                   pathname: `${url}/reviews`,
-                  state: {
-                    backUrl: `${location.state?.searchValue ? `/movies` : `/`}`,
-                    searchValue: location.state?.searchValue ?? '',
-                  },
+                  state: { from: location?.state?.from ?? '/' },
                 }}
               >
                 Reviews

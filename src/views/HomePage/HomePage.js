@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import MovieGallery from '../../components/MovieGallery';
-import { popularMovieGet } from '../../services/moviesApi';
+import { getPopularMovie } from '../../services/moviesApi';
 import PageHeading from '../../components/PageHeading';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
+
   useEffect(() => {
-    popularMovieGet()
+    getPopularMovie()
       .then(setMovies)
       .catch(error => error);
   }, []);

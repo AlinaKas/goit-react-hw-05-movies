@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 
-import { requestMovieSearch } from '../../services/moviesApi';
+import { searchRequestMovie } from '../../services/moviesApi';
 
 import Searchbar from '../../components/Searchbar';
 import MovieGallery from '../../components/MovieGallery';
-import s from './MoviesSearchPage.module.css';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import default_avatar from '../../images/default_avatar.jpeg';
 
 const MoviesSearchPage = () => {
   const [query, setQuery] = useState('');
@@ -31,7 +28,7 @@ const MoviesSearchPage = () => {
   }, [query]);
 
   const getMovies = () => {
-    requestMovieSearch(query)
+    searchRequestMovie(query)
       .then(results => {
         if (results.length === 0) {
           toast.error(`No movies for your request ${query}`);
@@ -45,7 +42,7 @@ const MoviesSearchPage = () => {
   const getSearchValue = useCallback(
     query => {
       setQuery(query);
-      setMovies([]);
+      // setMovies([]);
       history.push({ ...location, search: `query=${query}` });
     },
     [history, location],
@@ -55,12 +52,6 @@ const MoviesSearchPage = () => {
     <>
       <Searchbar onSubmitForm={getSearchValue} />
       {movies && <MovieGallery movies={movies} />}
-      {/* {error && <p className={s.error}>{error}</p>} */}
-      {/* {error && (
-        <div>
-          <img src={defaultImage} alt="error" className={s.defaultImage} />
-        </div>
-      )} */}
       <ToastContainer autoClose={3000} />
     </>
   );

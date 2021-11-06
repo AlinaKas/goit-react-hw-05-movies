@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { movieCastGet } from '../../services/moviesApi';
+import { getMovieCast } from '../../services/moviesApi';
 import default_avatar from '../../images/default_avatar.jpeg';
 import PreLoader from '../Loader/Loader';
 import s from './Cast.module.css';
@@ -11,7 +11,7 @@ const Cast = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    movieCastGet(movieId).then(setCast).finally(setStatus('success'));
+    getMovieCast(movieId).then(setCast).finally(setStatus('success'));
   }, [movieId]);
 
   if (status === 'pending') {

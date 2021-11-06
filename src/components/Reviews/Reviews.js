@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import s from './Reviews.module.css';
 import PropTypes from 'prop-types';
-import { movieReviewsGet } from '../../services/moviesApi';
+import { getMovieReviews } from '../../services/moviesApi';
 import PreLoader from '../Loader/Loader';
 
 const Reviews = () => {
@@ -12,7 +12,7 @@ const Reviews = () => {
 
   useEffect(() => {
     setStatus('pending');
-    movieReviewsGet(movieId).then(setReviews).finally(setStatus('success'));
+    getMovieReviews(movieId).then(setReviews).finally(setStatus('success'));
   }, [movieId]);
 
   if (status === 'pending') {
