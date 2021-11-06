@@ -1,10 +1,7 @@
 import React, { lazy } from 'react';
-// import MovieGalleryItem from '../MovieGalleryItem';
+import PropTypes from 'prop-types';
 import s from './MovieGallery.module.css';
-
-const MovieGalleryItem = lazy(() =>
-  import('../MovieGalleryItem' /* webpackChunkName: "movie" */),
-);
+import MovieGalleryItem from '../MovieGalleryItem';
 
 export default function MovieGallery({ movies }) {
   return (

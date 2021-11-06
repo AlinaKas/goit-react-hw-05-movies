@@ -11,7 +11,10 @@ const Cast = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    getMovieCast(movieId).then(setCast).finally(setStatus('success'));
+    getMovieCast(movieId)
+      .then(setCast)
+      .catch(error => error)
+      .finally(setStatus('success'));
   }, [movieId]);
 
   if (status === 'pending') {

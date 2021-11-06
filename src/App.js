@@ -5,15 +5,23 @@ import Container from './components/Container';
 import AppBar from './components/AppBar';
 import PreLoader from './components/Loader/Loader';
 
-// import HomePage from './views/HomePage';
-// import MoviesSearchPage from './views/MoviesSearchPage';
-// import MovieDetailsPage from './views/MovieDetailsPage';
+const HomePage = lazy(() =>
+  import('./views/HomePage' /* webpackChunkName: "home" */),
+);
 
-const HomePage = lazy(() => import('./views/HomePage'));
+const MoviesSearchPage = lazy(() =>
+  import('./views/MoviesSearchPage' /* webpackChunkName: "movie-search" */),
+);
 
-const MoviesSearchPage = lazy(() => import('./views/MoviesSearchPage'));
+const MovieDetailsPage = lazy(() =>
+  import('./views/MovieDetailsPage' /* webpackChunkName: "movie-details" */),
+);
 
-const MovieDetailsPage = lazy(() => import('./views/MovieDetailsPage'));
+const NotFoundPage = lazy(() =>
+  import(
+    './views/NotFoundPage/NotFoundPage' /* webpackChunkName: "not-found-page"*/
+  ),
+);
 
 function App() {
   return (
@@ -30,6 +38,9 @@ function App() {
             </Route>
             <Route path="/movies/:movieId">
               <MovieDetailsPage />
+            </Route>
+            <Route>
+              <NotFoundPage />
             </Route>
           </Switch>
         </Suspense>
