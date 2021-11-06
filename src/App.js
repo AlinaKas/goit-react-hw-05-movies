@@ -6,20 +6,24 @@ import AppBar from './components/AppBar';
 import PreLoader from './components/Loader/Loader';
 
 const HomePage = lazy(() =>
-  import('./views/HomePage' /* webpackChunkName: "home" */),
+  import('./views/HomePage' /* webpackChunkName: "home-page" */),
 );
 
 const MoviesSearchPage = lazy(() =>
-  import('./views/MoviesSearchPage' /* webpackChunkName: "movie-search" */),
+  import(
+    './views/MoviesSearchPage' /* webpackChunkName: "movie-search-page" */
+  ),
 );
 
 const MovieDetailsPage = lazy(() =>
-  import('./views/MovieDetailsPage' /* webpackChunkName: "movie-details" */),
+  import(
+    './views/MovieDetailsPage' /* webpackChunkName: "movie-details-page" */
+  ),
 );
 
 const NotFoundPage = lazy(() =>
   import(
-    './views/NotFoundPage/NotFoundPage' /* webpackChunkName: "not-found-page"*/
+    './views/NotFoundPage/NotFoundPage' /* webpackChunkName: "not-found-page" */
   ),
 );
 
