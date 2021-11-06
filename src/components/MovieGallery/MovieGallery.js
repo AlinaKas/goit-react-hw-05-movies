@@ -1,5 +1,4 @@
-import React, { lazy } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import s from './MovieGallery.module.css';
 import MovieGalleryItem from '../MovieGalleryItem';
 

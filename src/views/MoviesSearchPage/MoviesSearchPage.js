@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { searchRequestMovie } from '../../services/moviesApi';
 
@@ -13,7 +13,6 @@ const MoviesSearchPage = () => {
   const [movies, setMovies] = useState(null);
   const history = useHistory();
   const location = useLocation();
-  // const { url } = useRouteMatch();
 
   useEffect(() => {
     if (location.search === '') {
