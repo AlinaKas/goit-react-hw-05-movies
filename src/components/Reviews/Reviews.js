@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import s from './Reviews.module.css';
-import PropTypes from 'prop-types';
 import { getMovieReviews } from '../../services/moviesApi';
 import PreLoader from '../Loader/Loader';
 

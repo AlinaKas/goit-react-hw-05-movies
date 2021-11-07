@@ -15,7 +15,6 @@ export default function MovieGalleryItem({ movie }) {
     <li className={s.item}>
       <Link
         className={s.link}
-        exact
         to={{
           pathname: `movies/${movie.id}`,
           state: { from: location, label: 'BACK TO HOME' },

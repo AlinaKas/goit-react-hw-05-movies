@@ -8,7 +8,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import s from './MovieDetailsPage.module.css';
 import { getMovieDetails } from '../../services/moviesApi';
 import PreLoader from '../../components/Loader/Loader';
