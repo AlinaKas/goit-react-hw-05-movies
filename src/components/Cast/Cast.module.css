@@ -1,19 +1,18 @@
-image{
+image {
   height: 250px;
   width: 100%;
   object-fit: cover;
 }
 
-
 .list {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    padding: 0;
-    text-align: center;
-    min-height: 450px;
-    margin: -20px;
-    list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 0;
+  text-align: center;
+  min-height: 450px;
+  margin: -20px;
+  list-style: none;
 }
 
 .item {
@@ -23,7 +22,7 @@ image{
   margin: 20px;
 }
 
-.contentWrap{
+.contentWrap {
   padding: 10px;
 }
 
@@ -35,11 +34,11 @@ image{
 .description {
   margin-top: 5px;
   font-size: 15px;
-  color: #525b8f;
+  color: #929ee1;
 }
 
 .message {
-    text-align: center;
-    font-size: 20px;
-    color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+  color: #ffffff;
 }
